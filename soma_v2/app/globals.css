@@ -1,0 +1,456 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated to peec.ai inspired design with better contrast and visibility */
+  --background: oklch(0.99 0 0); /* Off-white background */
+  --foreground: oklch(0.15 0 0); /* Dark gray text for better readability */
+  --card: oklch(1 0 0); /* Pure white cards */
+  --card-foreground: oklch(0.15 0 0); /* Dark gray card text */
+  --popover: oklch(1 0 0); /* White popover */
+  --popover-foreground: oklch(0.15 0 0); /* Dark gray popover text */
+  /* Updated to use black as primary color */
+  --primary: oklch(0.1 0 0); /* Black primary color */
+  --primary-foreground: oklch(1 0 0); /* White primary text */
+  --secondary: oklch(0.96 0 0); /* Light gray secondary */
+  --secondary-foreground: oklch(0.15 0 0); /* Dark gray secondary text */
+  --muted: oklch(0.94 0 0); /* Light muted background */
+  --muted-foreground: oklch(0.45 0 0); /* Medium gray muted text */
+  --accent: oklch(0.96 0 0); /* Light accent */
+  --accent-foreground: oklch(0.15 0 0); /* Dark accent text */
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.9 0 0); /* Light gray borders */
+  --input: oklch(1 0 0); /* White input background */
+  /* Updated focus ring to black */
+  --ring: oklch(0.1 0 0 / 0.3); /* Black focus ring */
+  /* Updated chart colors with black primary */
+  --chart-1: oklch(0.1 0 0); /* Black chart color */
+  --chart-2: oklch(0.45 0.15 220); /* Blue chart color */
+  --chart-3: oklch(0.5 0.15 140); /* Green chart color */
+  --chart-4: oklch(0.6 0.2 60); /* Orange chart color */
+  --chart-5: oklch(0.4 0.15 280); /* Purple chart color */
+  --radius: 0.5rem;
+  --sidebar: oklch(1 0 0); /* White sidebar */
+  --sidebar-foreground: oklch(0.15 0 0); /* Dark sidebar text */
+  /* Updated sidebar primary to black */
+  --sidebar-primary: oklch(0.1 0 0); /* Black sidebar primary */
+  --sidebar-primary-foreground: oklch(1 0 0); /* White sidebar primary text */
+  --sidebar-accent: oklch(0.96 0 0); /* Light sidebar accent */
+  --sidebar-accent-foreground: oklch(0.15 0 0); /* Dark sidebar accent text */
+  --sidebar-border: oklch(0.9 0 0); /* Light gray sidebar border */
+  /* Updated sidebar ring to black */
+  --sidebar-ring: oklch(0.1 0 0 / 0.3); /* Black sidebar focus ring */
+}
+
+.dark {
+  /* Updated dark mode with better contrast */
+  --background: oklch(0.05 0 0); /* Very dark background */
+  --foreground: oklch(0.95 0 0); /* Light text */
+  --card: oklch(0.08 0 0); /* Dark card background */
+  --card-foreground: oklch(0.95 0 0); /* Light card text */
+  --popover: oklch(0.05 0 0); /* Dark popover */
+  --popover-foreground: oklch(0.95 0 0); /* Light popover text */
+  /* Updated dark mode primary to use dark gray */
+  --primary: oklch(0.2 0 0); /* Dark gray in dark mode */
+  --primary-foreground: oklch(1 0 0); /* White primary text */
+  --secondary: oklch(0.12 0 0); /* Dark secondary */
+  --secondary-foreground: oklch(0.95 0 0); /* Light secondary text */
+  --muted: oklch(0.12 0 0); /* Dark muted */
+  --muted-foreground: oklch(0.65 0 0); /* Medium gray muted text */
+  --accent: oklch(0.12 0 0); /* Dark accent */
+  --accent-foreground: oklch(0.95 0 0); /* Light accent text */
+  --destructive: oklch(0.65 0.2 25);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.15 0 0); /* Dark border */
+  --input: oklch(0.08 0 0); /* Dark input */
+  /* Updated dark mode ring to dark gray */
+  --ring: oklch(0.2 0 0 / 0.3); /* Dark gray focus ring */
+  /* Updated dark mode chart colors */
+  --chart-1: oklch(0.2 0 0);
+  --chart-2: oklch(0.55 0.15 220);
+  --chart-3: oklch(0.6 0.15 140);
+  --chart-4: oklch(0.7 0.2 60);
+  --chart-5: oklch(0.5 0.15 280);
+  --sidebar: oklch(0.02 0 0); /* Very dark sidebar */
+  --sidebar-foreground: oklch(0.95 0 0); /* Light sidebar text */
+  /* Updated dark mode sidebar primary to dark gray */
+  --sidebar-primary: oklch(0.2 0 0); /* Dark gray sidebar primary */
+  --sidebar-primary-foreground: oklch(1 0 0); /* White sidebar primary text */
+  --sidebar-accent: oklch(0.12 0 0); /* Dark sidebar accent */
+  --sidebar-accent-foreground: oklch(0.95 0 0); /* Light sidebar accent text */
+  --sidebar-border: oklch(0.15 0 0); /* Dark sidebar border */
+  /* Updated dark mode sidebar ring to dark gray */
+  --sidebar-ring: oklch(0.2 0 0 / 0.3); /* Dark gray sidebar focus ring */
+}
+
+@theme inline {
+  /* Updated font variables to use Urbanist */
+  --font-sans: var(--font-urbanist);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Enhanced styles for markdown content in raw responses */
+.markdown-content {
+  @apply text-gray-700 leading-relaxed;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  @apply font-semibold text-gray-900 mt-4 mb-2;
+}
+
+.markdown-content h1 { @apply text-xl; }
+.markdown-content h2 { @apply text-lg; }
+.markdown-content h3 { @apply text-base; }
+
+.markdown-content p {
+  @apply mb-3 text-sm;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  @apply ml-4 mb-3;
+}
+
+.markdown-content li {
+  @apply mb-1 text-sm;
+}
+
+.markdown-content strong,
+.markdown-content b {
+  @apply font-semibold text-gray-900;
+}
+
+.markdown-content em,
+.markdown-content i {
+  @apply italic;
+}
+
+.markdown-content code {
+  @apply bg-gray-100 text-gray-800 px-1 py-0.5 rounded text-xs font-mono;
+}
+
+.markdown-content pre {
+  @apply bg-gray-100 p-3 rounded-lg overflow-x-auto text-xs font-mono mb-3;
+}
+
+.markdown-content blockquote {
+  @apply border-l-4 border-gray-300 pl-4 italic text-gray-600 my-3;
+}
+
+.markdown-content a {
+  @apply text-blue-600 hover:text-blue-800 underline;
+}
+
+/* Enhanced visibility and contrast improvements */
+.tooltip-enhanced {
+  background-color: rgb(15 23 42) !important; /* slate-900 */
+  color: rgb(248 250 252) !important; /* slate-50 */
+  border: 1px solid rgb(51 65 85) !important; /* slate-600 */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Tremor chart text contrast improvements */
+[data-tremor="chart"] text {
+  fill: currentColor !important;
+}
+
+/* Ensure better contrast for muted text */
+.text-muted-foreground {
+  color: rgb(71 85 105) !important; /* slate-600 */
+}
+
+.dark .text-muted-foreground {
+  color: rgb(148 163 184) !important; /* slate-400 */
+}
+
+/* Card content visibility improvements */
+.card-content-enhanced {
+  background-color: white;
+  color: rgb(15 23 42); /* slate-900 */
+}
+
+.dark .card-content-enhanced {
+  background-color: rgb(2 6 23); /* slate-950 */
+  color: rgb(241 245 249); /* slate-100 */
+}
+
+/* Better button contrast */
+.btn-enhanced {
+  border: 1px solid rgb(226 232 240); /* slate-200 */
+  background-color: white;
+  color: rgb(15 23 42); /* slate-900 */
+}
+
+.dark .btn-enhanced {
+  border: 1px solid rgb(30 41 59); /* slate-800 */
+  background-color: rgb(2 6 23); /* slate-950 */
+  color: rgb(241 245 249); /* slate-100 */
+}
+
+/* TipTap Rich Text Editor Styles */
+.ProseMirror {
+  outline: none;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.ProseMirror h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0.67em 0;
+}
+
+.ProseMirror h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0.75em 0;
+}
+
+.ProseMirror h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+  margin: 0.83em 0;
+}
+
+.ProseMirror ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin: 1em 0;
+}
+
+.ProseMirror ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin: 1em 0;
+}
+
+.ProseMirror li {
+  margin: 0.25em 0;
+}
+
+.ProseMirror blockquote {
+  border-left: 4px solid #e5e7eb;
+  padding-left: 1rem;
+  margin: 1em 0;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.ProseMirror code {
+  background-color: #f3f4f6;
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+.ProseMirror pre {
+  background-color: #1f2937;
+  color: #f3f4f6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+.ProseMirror pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+
+.ProseMirror a {
+  color: #3b82f6;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ProseMirror a:hover {
+  color: #2563eb;
+}
+
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1em 0;
+}
+
+.ProseMirror table {
+  border-collapse: collapse;
+  margin: 1em 0;
+  overflow: hidden;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.ProseMirror table td,
+.ProseMirror table th {
+  border: 1px solid #d1d5db;
+  box-sizing: border-box;
+  min-width: 1em;
+  padding: 0.5rem;
+  position: relative;
+  vertical-align: top;
+}
+
+.ProseMirror table th {
+  background-color: #f3f4f6;
+  font-weight: bold;
+  text-align: left;
+}
+
+.ProseMirror hr {
+  border: none;
+  border-top: 2px solid #e5e7eb;
+  margin: 2em 0;
+}
+
+.ProseMirror p {
+  margin: 0.5em 0;
+}
+
+/* Dark mode styles for rich text editor */
+.dark .ProseMirror blockquote {
+  border-left-color: #374151;
+  color: #9ca3af;
+}
+
+.dark .ProseMirror code {
+  background-color: #1f2937;
+  color: #f3f4f6;
+}
+
+.dark .ProseMirror table td,
+.dark .ProseMirror table th {
+  border-color: #374151;
+}
+
+.dark .ProseMirror table th {
+  background-color: #1f2937;
+}
+
+.dark .ProseMirror hr {
+  border-top-color: #374151;
+}
+
+/* Clerk UI overrides: improved card + form styling */
+/* Use the provided card shadow for a cleaner, elevated card */
+.cl-cardBox, .cl-card {
+  /* Exact requested card styling */
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.09) !important;
+  border-color: rgba(0, 0, 0, 0.03) !important;
+  background-color: var(--color-card) !important;
+  border-radius: 0.75rem !important;
+  transition: box-shadow 180ms ease, transform 120ms ease !important;
+}
+
+/* Slight lift on hover/focus for perceived interactivity */
+.cl-cardBox:hover, .cl-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.12) !important;
+}
+
+/* Hide Clerk's built-in logo/header when we want a minimal auth box */
+.cl-logoBox, .cl-headerTitle, .cl-headerSubtitle {
+  display: none !important;
+}
+
+/* Form fields: rounded inputs, subtle border, clear focus ring */
+.cl-formFieldInput, .cl-input, input.cl-input, textarea.cl-input {
+  border-radius: 0.5rem !important;
+  padding: 0.75rem 1rem !important;
+  box-shadow: none !important;
+  border: 1px solid rgba(15,23,42,0.12) !important;
+  background-color: var(--color-input) !important;
+  color: var(--color-card-foreground) !important;
+}
+
+.cl-formFieldInput:focus, .cl-input:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 4px rgba(2,6,23,0.06) !important;
+  border: 2px solid var(--color-primary) !important;
+}
+
+/* Add clear outline for accessible visibility when fields are focused */
+.cl-formFieldInput:focus-visible {
+  box-shadow: 0 0 0 6px rgba(0,0,0,0.06) !important;
+}
+
+/* Primary action button styling */
+.cl-formButtonPrimary.cl-button, .cl-button[data-variant="solid"] {
+  border-radius: 0.625rem !important;
+  padding: 0.9rem 1.1rem !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 14px rgba(2,6,23,0.06) !important;
+}
+
+/* Secondary/social buttons: consistent rounded style */
+.cl-socialButtonsIconButton.cl-button {
+  border-radius: 0.625rem !important;
+  padding: 0.6rem !important;
+}
+
+/* Footer smaller muted text */
+.cl-footer .cl-internal-fcx671 {
+  color: rgba(255,255,255,0.65) !important;
+}

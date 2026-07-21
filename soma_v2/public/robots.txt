@@ -1,0 +1,47 @@
+# All bots - default rules
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /auth/
+Disallow: /onboarding/
+Disallow: /reset-password/
+Disallow: /forgot-password/
+
+# AI and Search Engine Bots - explicitly allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: CohereBot
+Allow: /
+
+# Sitemap locations
+Sitemap: https://withsoma.ai/sitemap.xml
+Sitemap: https://withsoma.ai/sitemap-blog.xml
+Sitemap: https://withsoma.ai/sitemap-resources.xml

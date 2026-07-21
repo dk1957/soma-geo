@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <rect width="512" height="512" fill="white"/>
+  <!-- Meta infinity-style logo -->
+  <path d="M256 310c-30 45-58 78-88 78-44 0-72-52-72-132s28-132 72-132c42 0 68 42 88 78 20-36 46-78 88-78 44 0 72 52 72 132s-28 132-72 132c-30 0-58-33-88-78z" fill="none" stroke="black" stroke-width="48" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,36 @@
+<svg width="300" height="200" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Old Way - Traditional Search -->
+<g transform="translate(20, 20)">
+<rect x="0" y="0" width="120" height="160" rx="8" fill="#FEF2F2" stroke="#F87171" stroke-width="1"/>
+<text x="60" y="20" font-family="Arial" font-size="10" font-weight="bold" text-anchor="middle" fill="#DC2626">Traditional Search</text>
+<rect x="10" y="35" width="100" height="8" fill="#F87171" opacity="0.3"/>
+<rect x="10" y="50" width="80" height="8" fill="#F87171" opacity="0.3"/>
+<rect x="10" y="65" width="90" height="8" fill="#F87171" opacity="0.3"/>
+<text x="60" y="90" font-family="Arial" font-size="8" text-anchor="middle" fill="#7F1D1D">10 Blue Links</text>
+<text x="60" y="105" font-family="Arial" font-size="8" text-anchor="middle" fill="#7F1D1D">Hope for Clicks</text>
+<text x="60" y="120" font-family="Arial" font-size="8" text-anchor="middle" fill="#7F1D1D">Declining Traffic</text>
+<circle cx="60" cy="140" r="8" fill="#DC2626"/>
+<text x="60" y="145" font-family="Arial" font-size="8" text-anchor="middle" fill="white">X</text>
+</g>
+
+<!-- Arrow -->
+<path d="M150 100 L160 100" stroke="#6B7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+<defs>
+<marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+<polygon points="0 0, 10 3.5, 0 7" fill="#6B7280"/>
+</marker>
+</defs>
+
+<!-- New Way - AI Search -->
+<g transform="translate(170, 20)">
+<rect x="0" y="0" width="120" height="160" rx="8" fill="#F0FDF4" stroke="#22C55E" stroke-width="1"/>
+<text x="60" y="20" font-family="Arial" font-size="10" font-weight="bold" text-anchor="middle" fill="#15803D">AI Recommendations</text>
+<circle cx="60" cy="50" r="20" fill="#22C55E" opacity="0.2"/>
+<text x="60" y="55" font-family="Arial" font-size="8" font-weight="bold" text-anchor="middle" fill="#15803D">YOU</text>
+<text x="60" y="90" font-family="Arial" font-size="8" text-anchor="middle" fill="#15803D">Direct Answer</text>
+<text x="60" y="105" font-family="Arial" font-size="8" text-anchor="middle" fill="#15803D">AI Citation</text>
+<text x="60" y="120" font-family="Arial" font-size="8" text-anchor="middle" fill="#15803D">Instant Authority</text>
+<circle cx="60" cy="140" r="8" fill="#22C55E"/>
+<text x="60" y="145" font-family="Arial" font-size="8" text-anchor="middle" fill="white">✓</text>
+</g>
+</svg>

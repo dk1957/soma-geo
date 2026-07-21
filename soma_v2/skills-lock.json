@@ -1,0 +1,430 @@
+{
+  "version": 1,
+  "skills": {
+    "ab-test-store-listing": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "a146d36a8725cee8a93893d8399dcc7eebd9889849aea2ce5eb033da7db0cad3"
+    },
+    "ai-discoverability-audit": {
+      "source": "BrianRWagner/ai-marketing-claude-code-skills",
+      "sourceType": "github",
+      "computedHash": "5714f197ba65391f1a89386f98dc7f703ae6a153d92af2357a34d5a8b1020b1f"
+    },
+    "android-aso": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "f5402ea96ce5a41918382de166827a94a28cf6cc35ba29cebfbf811cd619f0b8"
+    },
+    "app-analytics": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "d448c0b063be9aaf8a50e34e396708a705cf5a03553ecd7d6a09d621b6e11cc4"
+    },
+    "app-clips": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "0d3ae448ca7832326876110775fce256dd75664033a62e05c6f83f72afd0490b"
+    },
+    "app-icon-optimization": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "cbd6d2c1ad5708dc4c00fe542dad3dcc575cc66ceb82b3ead411d6ac20173a1a"
+    },
+    "app-launch": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "8297e9160f591268bc6005c6f8996efd8dbfc2000811ffe5b1a79c75ebd9123d"
+    },
+    "app-marketing-context": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "190347fce5aee1aad7c946d954289547c0475b325d46359cbde83323f3d5fb02"
+    },
+    "app-store-featured": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "775924f2040d0895ab321cf726adb45a2130420351d9ae26c7ca1e1801a59395"
+    },
+    "apple-search-ads": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "735639c0470adc80af02040d9f87b7331f2d38e7af2527f8ffcbfb9c19bd0451"
+    },
+    "asc-metrics": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "f073b14bcbe9f7cc6da9c41799ae5ab2471bfe50ecb0c4432be41ae578da5ce7"
+    },
+    "aso-audit": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "3d2eb475a58f5913bb78802491f6845f713da3bbf1d5581e2a2c54f0ae540941"
+    },
+    "audit-website": {
+      "source": "squirrelscan/skills",
+      "sourceType": "github",
+      "computedHash": "2c060290f90340e8bb6009502ec936b8ebb3ff889332a43e24bf210528ebba9f"
+    },
+    "case-study-builder": {
+      "source": "BrianRWagner/ai-marketing-claude-code-skills",
+      "sourceType": "github",
+      "computedHash": "d37ca154a550440c8945c28e099b8b88e6cd859c6d9e7b519f2bb99785e0ebae"
+    },
+    "cold-outreach-sequence": {
+      "source": "BrianRWagner/ai-marketing-claude-code-skills",
+      "sourceType": "github",
+      "computedHash": "987a0a7df737f63d6335913f9cbd8fc1fb7d0c54290cb27d950d4349f6354389"
+    },
+    "competitor-analysis": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "0cb970b55d107547a5edd9eb833d06644fd27f9c6aef6126b7c3fe5cd045ef0e"
+    },
+    "competitor-tracking": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "63064b2caabfd053c04d6281227dcf7ec29ee43ea1118233815f19d5963b382f"
+    },
+    "content-idea-generator": {
+      "source": "BrianRWagner/ai-marketing-claude-code-skills",
+      "sourceType": "github",
+      "computedHash": "43902c30da40570e788bbe88c2b649f95783a8202d59058a8de3229d446dc0af"
+    },
+    "crash-analytics": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "4b202563ac2b174b84f9184bee0a20b1b2b94c7cdbd1b6b8b57425bee738cc76"
+    },
+    "daily-briefing-builder": {
+      "source": "BrianRWagner/ai-marketing-claude-code-skills",
+      "sourceType": "github",
+      "computedHash": "77ec479a9d797e536d0ddb310163db0a3301207a23b7d895bea14433fc7d2194"
+    },
+    "de-ai-ify": {
+      "source": "BrianRWagner/ai-marketing-claude-code-skills",
+      "sourceType": "github",
+      "computedHash": "b2c96d19db9ce3709a24f30c7a7d53a512ada99810e299437e4af75499fac5a4"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "computedHash": "063a0e6448123cd359ad0044cc46b0e490cc7964d45ef4bb9fd842bd2ffbca67"
+    },
+    "go-mode": {
+      "source": "BrianRWagner/ai-marketing-claude-code-skills",
+      "sourceType": "github",
+      "computedHash": "a2b5a808f875069e6ce1235b2cbe5386897de8a0b821dbb0e89e0212be90d0a0"
+    },
+    "homepage-audit": {
+      "source": "BrianRWagner/ai-marketing-claude-code-skills",
+      "sourceType": "github",
+      "computedHash": "55af73d069bdfa53d1fcc9ba3429d968a18400829b3c54278dad3ece3c367db8"
+    },
+    "humanizer": {
+      "source": "blader/humanizer",
+      "sourceType": "github",
+      "computedHash": "b813857f183da05d08d5a80adac671df94c139f855809bd47ab8b7bb245546a2"
+    },
+    "in-app-events": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "ecba95962ddc4055e364174ffdc0e68f6408fdf8d918bf12399d60752c399c7d"
+    },
+    "keyword-research": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "16189d57cc4e195b71ddc82445b3a16e8b2f9090669e01fb39e8c8d094f6a06c"
+    },
+    "last30days": {
+      "source": "BrianRWagner/ai-marketing-claude-code-skills",
+      "sourceType": "github",
+      "computedHash": "0ab0770e230675ee637e107ddd3b644c9a1592c8832ed4ef902510b66bef909e"
+    },
+    "linkedin-authority-builder": {
+      "source": "BrianRWagner/ai-marketing-claude-code-skills",
+      "sourceType": "github",
+      "computedHash": "c79a4fa94298765239437f546b9008350b6436e9bf710ef400a33e7bb0d16dfb"
+    },
+    "linkedin-profile-optimizer": {
+      "source": "BrianRWagner/ai-marketing-claude-code-skills",
+      "sourceType": "github",
+      "computedHash": "f0620da9c832a249f9abf0f178f4dbc0a2b5be7cc5d83ba8e2eb2a2f28f7d5a5"
+    },
+    "localization": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "279d66d00f89289182335e62a3bb780058c9daf0944c1584676501df66aeb2a5"
+    },
+    "market-movers": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "a80f5778b19cce22278923e653dd7f69b2463f25de46c0ccb2926e72b5ceb638"
+    },
+    "market-pulse": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "2a118a484a70877347bc1f28699ac8451ee64d6e148b41b7c234147557cef47f"
+    },
+    "marketing-principles": {
+      "source": "BrianRWagner/ai-marketing-claude-code-skills",
+      "sourceType": "github",
+      "computedHash": "f777a863fd2164b6cc68bccc97ca2ad1a036dcb931446ccad30d889d34450aa6"
+    },
+    "meeting-prep-cc": {
+      "source": "BrianRWagner/ai-marketing-claude-code-skills",
+      "sourceType": "github",
+      "computedHash": "35750488880b098478dfdf2eeb0c6f14dabafc4c35d557673e2d1c911dcab61b"
+    },
+    "metadata-optimization": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "16ad5203b36914d9b19b46f67c394931c9c2eb82fa45c3d3d0f46c1c994c80fd"
+    },
+    "monetization-strategy": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "7b175044a2f7c1e5e747a0c3c8a24f5e2f74c1e52ef8b3fbd463a3badf150fb5"
+    },
+    "newsletter-creation-curation": {
+      "source": "BrianRWagner/ai-marketing-claude-code-skills",
+      "sourceType": "github",
+      "computedHash": "ee603f47bbc2b6d3c87989b5d78ceb8746802c5249bd689cedbcd992abc292a6"
+    },
+    "next-best-practices": {
+      "source": "vercel-labs/next-skills",
+      "sourceType": "github",
+      "computedHash": "db85045827ebeb83ac8dbc992b69188755eeb74dcf01cbf5e694d58aa494a106"
+    },
+    "next-cache-components": {
+      "source": "vercel-labs/next-skills",
+      "sourceType": "github",
+      "computedHash": "f835d8226c28abf012cc013928e2627c8a7a046de61127ef229be1711bd1f255"
+    },
+    "next-upgrade": {
+      "source": "vercel-labs/next-skills",
+      "sourceType": "github",
+      "computedHash": "e3aeb1f9e8a68d24df0c1c2e3c8ab97ede09a7251a2c76988318d02254346979"
+    },
+    "onboarding-optimization": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "ad4ecee81dec8ecce4a83759e7a5a1f19d8f6a393500d27a231525e735311747"
+    },
+    "plan-my-day": {
+      "source": "BrianRWagner/ai-marketing-claude-code-skills",
+      "sourceType": "github",
+      "computedHash": "6b8f0dc0e675c63d98a1bc0963e5e7df98512fbb25bd971cf48fa25e8f8d4da0"
+    },
+    "positioning-basics": {
+      "source": "BrianRWagner/ai-marketing-claude-code-skills",
+      "sourceType": "github",
+      "computedHash": "8bc23a759a97e940f4bb936ced9cbd043d4227535ca018982c81deba959c0016"
+    },
+    "press-and-pr": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "52bd8a304af5afc42f73a8cb9653a5864a47bb77c3c45fac9e337b1a6abefe7f"
+    },
+    "rating-prompt-strategy": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "d9a3471479fb02249d5c5272e105db7ab53e07a786c5f2041c38479d245adbda"
+    },
+    "reddit-insights": {
+      "source": "BrianRWagner/ai-marketing-claude-code-skills",
+      "sourceType": "github",
+      "computedHash": "4883b70a412f3adb90f8d1b89735f19db5c67b24462f8157f512678a81eb6049"
+    },
+    "retention-optimization": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "396b63944c41a206b6c1971a74266ce75ef086a679d72f8054d0f531bf4afc25"
+    },
+    "review-management": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "3bf51fff1800b1a8b7984cd232c89ee62f58a1d4b2c2cd88107d1260acfbe21d"
+    },
+    "screenshot-optimization": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "c48beb6c88a9a56d89fc302d5c1dfe2c48929cad719136edf0029d9d4577d244"
+    },
+    "seasonal-aso": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "9b3a8d8e23e9964ee0d9e91aa6fc8da5c97b29262169f44ed17335121f656a27"
+    },
+    "seo": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "computedHash": "17572d938db8f33c4149f18b3b997ae648d1b5499f1b62fbb7b981a256fb2fea"
+    },
+    "seo-audit": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "computedHash": "70ef0d54c886c1969ec285573db1940bd0e1ad63a2ed5ae34edabd15f20508ad"
+    },
+    "seo-backlinks": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "computedHash": "7863f706aa191e75524a95f68f79f0858c9c6eb9a9a916345c499e2deea28674"
+    },
+    "seo-competitor-pages": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "computedHash": "71009f63253883422d708154b87e99293bc57a5f22783a10a043905be4daa0b3"
+    },
+    "seo-content": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "computedHash": "43a9fa1a1861c38f5a600d5bab67326877bb8791e107600305c337156e72e893"
+    },
+    "seo-dataforseo": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "computedHash": "27cb214cf8785e9b69041133a1c9a556a38c6116f83f41420d50f0ac2483c3ec"
+    },
+    "seo-geo": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "computedHash": "c9aec92b1e0089578e8b0cd9c4ebcfdb747a5575f4f5f51f68ce2dfbd4a6d2f6"
+    },
+    "seo-google": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "computedHash": "ed57454a7db27e85e90b8a750b4cc59be012e4bb477d3bd59b824aa9c12212f9"
+    },
+    "seo-hreflang": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "computedHash": "473eb98dac5c638860fe909461b914042bf6678ba25dc3f3c64e594f12699eae"
+    },
+    "seo-image-gen": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "computedHash": "ec325952ce32f06b31badb75cb2c733444095baf5c7be4ce8a5d7e4128dae068"
+    },
+    "seo-images": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "computedHash": "604b4887a1b923a288d3e09309af44dd439674d6493a538ba8d5137baaa71f42"
+    },
+    "seo-local": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "computedHash": "54ae30fd13ed03aae36029b14195ec65b60a1e014ec784800b1b9452ca05a885"
+    },
+    "seo-maps": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "computedHash": "24d9c1141baaef638547be990724b4342d669ecfe60e4d0a8e7d7f8fe58171ea"
+    },
+    "seo-page": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "computedHash": "268a06458437585055fb991346f665ff3c3599ff74d15c2c685c23a4eaa5f28f"
+    },
+    "seo-plan": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "computedHash": "f217358214701be3f2c499718acfc7034316e0badc89d699e27995d11b00cee9"
+    },
+    "seo-programmatic": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "computedHash": "8537aa0d9cd2f067ccaef6221c22a6b0791c1c160ac1b7032912056b0419614a"
+    },
+    "seo-schema": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "computedHash": "c18479766f12bbb07f64fff2706640e3f58a4d3b7614998c2da2308a8138bee8"
+    },
+    "seo-sitemap": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "computedHash": "b024ffae4eb74cfe0d81e85534b416b5ac409ce1b9d9ea22ef8af8f591aa1f76"
+    },
+    "seo-technical": {
+      "source": "AgriciDaniel/claude-seo",
+      "sourceType": "github",
+      "computedHash": "23db3ba05a05eec0f47958bec90b650baf62b0d551e99b076e0957a6b6259a66"
+    },
+    "shadcn": {
+      "source": "shadcn/ui",
+      "sourceType": "github",
+      "computedHash": "873c67922d80775a9fdf596db7964b579f0408c30ec6e3d11989f6055bbec89f"
+    },
+    "skill-creator": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "computedHash": "b122f4d1e91aa1d83027e050b5b37c3156203ee85458d7b1360bc48167c9e02a"
+    },
+    "social-card-gen": {
+      "source": "BrianRWagner/ai-marketing-claude-code-skills",
+      "sourceType": "github",
+      "computedHash": "73ca0c56deaedd3c35c439cd8f53841d049c7176a6b363c055232f277204262c"
+    },
+    "stripe-best-practices": {
+      "source": "docs.stripe.com",
+      "sourceType": "well-known",
+      "computedHash": "c89653e4f3a289ecdf1a51b3696ee7b18e172131c9803a981088c8d70536c85e"
+    },
+    "stripe-projects": {
+      "source": "docs.stripe.com",
+      "sourceType": "well-known",
+      "computedHash": "74b5f9e1e24d7662000c28d6572e438ac71847d60ea0a8704b088441355e3371"
+    },
+    "subscription-lifecycle": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "c37ae50bd23c541fddee4ed232d56c2aefcad267dd3a98a4f0b136078570d2ee"
+    },
+    "supabase": {
+      "source": "supabase/agent-skills",
+      "sourceType": "github",
+      "computedHash": "cb675a889c60172febe84740e7c22b600c8241c390deaff3d368c408f10dffdf"
+    },
+    "supabase-postgres-best-practices": {
+      "source": "supabase/agent-skills",
+      "sourceType": "github",
+      "computedHash": "f4cd7570115d97af6bcb2946eb891a958c8d04a43b479871c9ccadbc670ad058"
+    },
+    "testimonial-collector": {
+      "source": "BrianRWagner/ai-marketing-claude-code-skills",
+      "sourceType": "github",
+      "computedHash": "37803003b13defec73b3b8ac08011020bb4306dcfa20fb2cd58237e2a1bcef0f"
+    },
+    "tweet-draft-reviewer": {
+      "source": "BrianRWagner/ai-marketing-claude-code-skills",
+      "sourceType": "github",
+      "computedHash": "9c8c241f75624963634156a22bfdcce84e9b810998e287c3f63262d809f2968d"
+    },
+    "ua-campaign": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "fd7e9079c30e86943060ab7da00d3ef36034b9c318820d28dd53b8424fc7b96d"
+    },
+    "upgrade-stripe": {
+      "source": "docs.stripe.com",
+      "sourceType": "well-known",
+      "computedHash": "06c5c3fd85657ff9aaadff65bd2d63f606da8e44802dc1f9aaf42c73263a11b7"
+    },
+    "vault-cleanup-auditor": {
+      "source": "BrianRWagner/ai-marketing-claude-code-skills",
+      "sourceType": "github",
+      "computedHash": "cde07aceb67d841f38ffc9c8cb02251fdbdd9cbec24fd42591b4450d0c78a682"
+    },
+    "voice-extractor": {
+      "source": "BrianRWagner/ai-marketing-claude-code-skills",
+      "sourceType": "github",
+      "computedHash": "9ad9ab968052e1de7a5cc026e7c52ac6aff6923e4cc10fc164399ae27cda5d48"
+    },
+    "youtube-summarizer": {
+      "source": "BrianRWagner/ai-marketing-claude-code-skills",
+      "sourceType": "github",
+      "computedHash": "e0e8470e8d01bf04df7cced58af79e5ea91c79ca3640fbc56ada661397c1b417"
+    }
+  }
+}

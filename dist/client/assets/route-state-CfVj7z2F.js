@@ -1,0 +1,1 @@
+function r(e){return e.isSessionPending||!e.hasSession||e.isCustomerLoading?"loading":e.isCustomerError?"error":"ready"}function i(e){return!e.hasSession||e.isCustomerLoading?"loading":e.isCustomerError?"error":e.planStatus==="paid"||e.hasManagedAccess&&!e.isUpgradeFlow?"redirectToApp":e.checkoutCompleted?"finalizing":"showPaywall"}export{r as a,i as g};

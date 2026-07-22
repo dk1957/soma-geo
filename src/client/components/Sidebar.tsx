@@ -15,7 +15,6 @@ import {
   connectNavGroup,
   getProjectNavGroups,
 } from "@/client/navigation/items";
-import { ProjectSwitcher } from "@/client/features/projects/ProjectSwitcher";
 import { SamSidebarPanel } from "@/client/features/sam/SamSidebarPanel";
 import { ThemePreferenceMenuItems } from "@/client/components/ThemePreferenceMenuItems";
 import { closeDropdown } from "@/client/lib/dropdown";
@@ -138,13 +137,6 @@ export function Sidebar({ projectId, onNavigate, onClose }: SidebarProps) {
             <X className="h-5 w-5" />
           </button>
         ) : null}
-      </div>
-
-      <div className="px-3 pb-1">
-        <ProjectSwitcher
-          activeProjectId={projectId}
-          onCloseDrawer={onNavigate}
-        />
       </div>
 
       {projectId ? (

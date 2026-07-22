@@ -8,6 +8,7 @@ import {
   SeoApiStatusBanners,
 } from "@/client/layout/AppShellParts";
 import { GscReEngagementModal } from "@/client/features/gsc/GscReEngagementModal";
+import { ProjectSwitcher } from "@/client/features/projects/ProjectSwitcher";
 import { Sidebar } from "@/client/components/Sidebar";
 import { BILLING_ROUTE } from "@/shared/billing";
 import { getSeoApiKeyStatus } from "@/serverFunctions/config";
@@ -124,12 +125,15 @@ export function AuthenticatedAppLayout({
         <MobileTopBar
           drawerOpen={drawerOpen}
           onOpenDrawer={() => setDrawerOpen(true)}
+          projectId={sidebarProjectId}
         />
 
         {/* PostHog-style cutout: the main content sits on a raised panel with a
             thin strip of the sidebar background above it and a hairline border. */}
         <div className="flex min-h-0 flex-1 flex-col md:pt-2">
           <div className="flex min-h-0 flex-1 flex-col overflow-hidden bg-base-100 md:rounded-tl-lg md:border-l md:border-t md:border-base-300">
+            <DesktopTopBar projectId={sidebarProjectId} />
+
             <SeoApiStatusBanners
               shouldShowSeoApiWarning={shouldShowSeoApiWarning}
               seoApiKeyStatusError={seoApiKeyStatusError}
@@ -162,12 +166,26 @@ export function AuthenticatedAppLayout({
   );
 }
 
+// Desktop top navigation bar. The project switcher lives here (right-aligned),
+// leaving the left sidebar dedicated to the grouped feature navigation.
+function DesktopTopBar({ projectId }: { projectId: string | null }) {
+  return (
+    <div className="hidden shrink-0 items-center justify-end gap-2 border-b border-base-300 bg-base-100 px-4 py-2 md:flex">
+      <div className="w-64">
+        <ProjectSwitcher activeProjectId={projectId} align="end" />
+      </div>
+    </div>
+  );
+}
+
 function MobileTopBar({
   drawerOpen,
   onOpenDrawer,
+  projectId,
 }: {
   drawerOpen: boolean;
   onOpenDrawer: () => void;
+  projectId: string | null;
 }) {
   return (
     <div className="flex shrink-0 items-center gap-1 border-b border-base-300 bg-base-100 px-2 py-1.5 md:hidden">
@@ -183,6 +201,9 @@ function MobileTopBar({
       <Link to="/" className="ml-1 font-semibold text-base-content">
         OpenSEO
       </Link>
+      <div className="ml-auto w-44 max-w-[55%]">
+        <ProjectSwitcher activeProjectId={projectId} align="end" />
+      </div>
     </div>
   );
 }

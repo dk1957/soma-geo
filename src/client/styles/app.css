@@ -2,6 +2,10 @@
 
 @theme {
   --container-8xl: 88rem;
+  /* Match the soma_v2 design system: Urbanist as the primary UI typeface. */
+  --font-sans:
+    "Urbanist", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 :root {
@@ -25,17 +29,18 @@
   default: true;
   prefersdark: false;
   color-scheme: light;
+  /* soma_v2 palette: off-white surfaces, near-black primary, neutral grays. */
   --color-base-100: oklch(100% 0 0);
-  --color-base-200: oklch(97% 0 0);
-  --color-base-300: oklch(92% 0 0);
-  --color-base-content: oklch(20% 0 0);
-  --color-primary: oklch(50% 0.12 262);
+  --color-base-200: oklch(98% 0 0);
+  --color-base-300: oklch(90% 0 0);
+  --color-base-content: oklch(15% 0 0);
+  --color-primary: oklch(20% 0 0);
   --color-primary-content: oklch(100% 0 0);
-  --color-secondary: oklch(55% 0.15 145);
-  --color-secondary-content: oklch(100% 0 0);
-  --color-accent: oklch(50% 0.12 262);
+  --color-secondary: oklch(96% 0 0);
+  --color-secondary-content: oklch(15% 0 0);
+  --color-accent: oklch(20% 0 0);
   --color-accent-content: oklch(100% 0 0);
-  --color-neutral: oklch(25% 0 0);
+  --color-neutral: oklch(20% 0 0);
   --color-neutral-content: oklch(100% 0 0);
   --color-info: oklch(70% 0.15 230);
   --color-info-content: oklch(100% 0 0);
@@ -60,18 +65,20 @@
   name: "openseo-dark";
   prefersdark: true;
   color-scheme: dark;
-  --color-base-100: oklch(18% 0 0);
-  --color-base-200: oklch(12% 0 0);
-  --color-base-300: oklch(27% 0 0);
-  --color-base-content: oklch(92% 0 0);
-  --color-primary: oklch(66% 0.12 262);
-  --color-primary-content: oklch(100% 0 0);
-  --color-secondary: oklch(60% 0.15 145);
-  --color-secondary-content: oklch(100% 0 0);
-  --color-accent: oklch(66% 0.12 262);
-  --color-accent-content: oklch(100% 0 0);
-  --color-neutral: oklch(85% 0 0);
-  --color-neutral-content: oklch(20% 0 0);
+  /* soma_v2-inspired dark surfaces with a near-white monochrome accent so
+     primary buttons/indicators stay legible against the dark panels. */
+  --color-base-100: oklch(15% 0 0);
+  --color-base-200: oklch(10% 0 0);
+  --color-base-300: oklch(25% 0 0);
+  --color-base-content: oklch(95% 0 0);
+  --color-primary: oklch(92% 0 0);
+  --color-primary-content: oklch(15% 0 0);
+  --color-secondary: oklch(20% 0 0);
+  --color-secondary-content: oklch(95% 0 0);
+  --color-accent: oklch(92% 0 0);
+  --color-accent-content: oklch(15% 0 0);
+  --color-neutral: oklch(88% 0 0);
+  --color-neutral-content: oklch(15% 0 0);
   --color-info: oklch(70% 0.15 230);
   --color-info-content: oklch(100% 0 0);
   --color-success: oklch(65% 0.18 145);
@@ -93,6 +100,7 @@
 html,
 body {
   @apply m-0 bg-base-200;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100%;

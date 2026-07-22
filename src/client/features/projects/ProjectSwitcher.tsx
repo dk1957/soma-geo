@@ -9,11 +9,15 @@ import type { ProjectSummary } from "./types";
 export function ProjectSwitcher({
   activeProjectId,
   onCloseDrawer,
+  align = "start",
 }: {
   activeProjectId: string | null;
   // Mobile sidebar passes this so switching / navigating away also closes the
   // drawer overlay.
   onCloseDrawer?: () => void;
+  // Controls which edge the dropdown menu aligns to. The top-bar placement
+  // sits near the right edge, so it opens end-aligned to avoid overflow.
+  align?: "start" | "end";
 }) {
   const navigate = useNavigate();
   const projectsQuery = useQuery({
@@ -36,7 +40,7 @@ export function ProjectSwitcher({
   };
 
   return (
-    <div className="dropdown w-full">
+    <div className={`dropdown w-full ${align === "end" ? "dropdown-end" : ""}`}>
       <button
         type="button"
         tabIndex={0}

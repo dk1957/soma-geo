@@ -10,6 +10,13 @@ import {
   createDataforseoClient,
   normalizeBacklinksTarget,
 } from "@/server/lib/dataforseo";
+import { buildCacheKey, getCached } from "@/server/lib/r2-cache";
+import { detectTarget } from "@/shared/targetDetection";
+import {
+  brandLookupResultSchema,
+  type BrandLookupResult,
+} from "@/types/schemas/ai-search";
+import type { DashboardAiVisibility } from "@/types/schemas/dashboard";
 
 // Daily cadence: fresh numbers each visit without per-visit spend; a dormant
 // project costs nothing because refreshes are visit-triggered.
@@ -27,6 +34,10 @@ export type DashboardActivation = {
     cardDismissedAt: string | null;
   };
   competitorClickedAt: string | null;
+  // True once the project domain has a cached AI Visibility (Brand Lookup)
+  // result — drives the AEO onboarding step. Derived from a read-only cache
+  // peek, so it never triggers a paid call.
+  aiVisibilityChecked: boolean;
 };
 
 type DashboardRankSummary = {
@@ -74,11 +85,17 @@ async function getActivation(input: {
   organizationId: string;
   domain: string | null;
 }): Promise<DashboardActivation> {
-  const [gsc, orgActivation, projectActivation] = await Promise.all([
-    GscConnectionRepository.getByProjectId(input.projectId),
-    ActivationRepository.getOrganizationActivation(input.organizationId),
-    ActivationRepository.getProjectActivation(input.projectId),
-  ]);
+  const [gsc, orgActivation, projectActivation, aiVisibility] =
+    await Promise.all([
+      GscConnectionRepository.getByProjectId(input.projectId),
+      ActivationRepository.getOrganizationActivation(input.organizationId),
+      ActivationRepository.getProjectActivation(input.projectId),
+      getAiVisibility({
+        projectId: input.projectId,
+        organizationId: input.organizationId,
+        domain: input.domain,
+      }),
+    ]);
 
   return {
     domain: input.domain,
@@ -89,6 +106,7 @@ async function getActivation(input: {
       cardDismissedAt: projectActivation?.mcpCardDismissedAt ?? null,
     },
     competitorClickedAt: projectActivation?.competitorStepClickedAt ?? null,
+    aiVisibilityChecked: aiVisibility.status === "cached",
   };
 }
 
@@ -266,8 +284,84 @@ async function ensureBacklinkSnapshot(input: {
   return getBacklinkSummary(projectId, domain);
 }
 
+// Brand Lookup's input defaults (see brandLookupInputSchema): a plain
+// dashboard peek assumes US/English and no competitor comparison, which is the
+// most common lookup a user runs for their own domain. These MUST stay in sync
+// with the cache key getBrandLookup builds, or the peek silently never hits.
+const AI_VISIBILITY_DEFAULT_LOCATION_CODE = 2840;
+const AI_VISIBILITY_DEFAULT_LANGUAGE_CODE = "en";
+
+const EMPTY_AI_VISIBILITY: DashboardAiVisibility = {
+  status: "empty",
+  resolvedTarget: null,
+  fetchedAt: null,
+  totalMentions: null,
+  totalAiSearchVolume: null,
+  perPlatform: [],
+  sampleQueries: [],
+};
+
+/**
+ * Read-only peek at the project's AI answer-engine visibility. Rebuilds the
+ * exact R2 cache key {@link getBrandLookup} writes for a no-competitor domain
+ * lookup and returns a compact summary if a cached result exists. Never calls
+ * DataForSEO, so it is safe on the dashboard for every plan tier — a cache
+ * miss just yields the "empty" state and the card prompts the user to run a
+ * full lookup.
+ */
+async function getAiVisibility(input: {
+  projectId: string;
+  organizationId: string;
+  domain: string | null;
+}): Promise<DashboardAiVisibility> {
+  if (!input.domain) return EMPTY_AI_VISIBILITY;
+
+  const detected = detectTarget(input.domain);
+  const cacheKey = await buildCacheKey("ai-search:brand-lookup", {
+    organizationId: input.organizationId,
+    projectId: input.projectId,
+    targetType: detected.type,
+    targetValue: detected.value.toLowerCase(),
+    competitors: "",
+    locationCode: AI_VISIBILITY_DEFAULT_LOCATION_CODE,
+    languageCode: AI_VISIBILITY_DEFAULT_LANGUAGE_CODE,
+  });
+
+  const parsed = brandLookupResultSchema.safeParse(await getCached(cacheKey));
+  if (!parsed.success || !parsed.data.hasData) return EMPTY_AI_VISIBILITY;
+
+  return summarizeAiVisibility(parsed.data);
+}
+
+function summarizeAiVisibility(
+  result: BrandLookupResult,
+): DashboardAiVisibility {
+  const sampleQueries = Array.from(
+    new Set(
+      result.topQueries
+        .map((q) => q.question.trim())
+        .filter((q) => q.length > 0),
+    ),
+  ).slice(0, 3);
+
+  return {
+    status: "cached",
+    resolvedTarget: result.resolvedTarget,
+    fetchedAt: result.fetchedAt,
+    totalMentions: result.totalMentions,
+    totalAiSearchVolume: result.totalAiSearchVolume,
+    perPlatform: result.perPlatform.map((p) => ({
+      platform: p.platform,
+      mentions: p.mentions,
+      aiSearchVolume: p.aiSearchVolume,
+    })),
+    sampleQueries,
+  };
+}
+
 export const DashboardService = {
   getActivation,
   getOverview,
+  getAiVisibility,
   ensureBacklinkSnapshot,
 };

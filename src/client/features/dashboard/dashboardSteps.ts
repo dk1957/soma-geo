@@ -4,6 +4,7 @@ import type { DashboardHeroStep } from "@/types/schemas/dashboard";
 export const STEP_ORDER: DashboardHeroStep[] = [
   "domain",
   "mcp",
+  "aeo",
   "gsc",
   "competitor",
 ];
@@ -24,6 +25,8 @@ export function isStepDone(
         activation.mcp.authorizedAt !== null ||
         activation.mcp.cardDismissedAt !== null
       );
+    case "aeo":
+      return activation.aiVisibilityChecked;
     case "gsc":
       return activation.gsc.connected;
     case "competitor":

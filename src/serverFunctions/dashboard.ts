@@ -25,6 +25,20 @@ export const getDashboardOverview = createServerFn({ method: "POST" })
     }),
   );
 
+// Read-only peek at the last cached AI Visibility (Brand Lookup) result for the
+// project domain. Never calls DataForSEO and isn't plan-gated — a cache miss
+// just returns the "empty" state so the card can prompt a full lookup.
+export const getDashboardAiVisibility = createServerFn({ method: "POST" })
+  .middleware(requireProjectContext)
+  .validator(dashboardProjectInputSchema)
+  .handler(({ context }) =>
+    DashboardService.getAiVisibility({
+      projectId: context.projectId,
+      organizationId: context.organizationId,
+      domain: context.project.domain,
+    }),
+  );
+
 // Visit-triggered: the client calls this when the overview reports a missing
 // or stale backlink snapshot. Metered against org credits at most once per
 // project per day (the service re-checks freshness server-side).

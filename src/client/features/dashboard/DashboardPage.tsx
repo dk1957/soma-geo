@@ -10,6 +10,7 @@ import {
   STEP_ORDER,
 } from "@/client/features/dashboard/dashboardSteps";
 import {
+  AiVisibilityCard,
   AuditHealthCard,
   BacklinkPulseCard,
   GscCard,
@@ -19,6 +20,7 @@ import { getStandardErrorMessage } from "@/client/lib/error-messages";
 import type { DashboardActivation } from "@/server/features/dashboard/services/DashboardService";
 import {
   getDashboardActivation,
+  getDashboardAiVisibility,
   getDashboardOverview,
   markDashboardCompetitorClicked,
   refreshDashboardBacklinkSnapshot,
@@ -39,6 +41,11 @@ const HERO_COPY: Record<
     title: "Connect your AI agent",
     body: "OpenSEO is built to be used from agents like Claude. Connect once, then ask it to use OpenSEO to help build your SEO strategy.",
     cta: "Show me how",
+  },
+  aeo: {
+    title: "Check your AI visibility",
+    body: "Search is no longer just Google. See how often ChatGPT and Google's AI Overview mention and cite your brand, and where you stand against competitors.",
+    cta: "Run a Brand Lookup",
   },
   gsc: {
     title: "Connect Search Console",
@@ -219,6 +226,17 @@ function OnboardingChecklist({
             >
               {copy.cta} →
             </Link>
+          ) : step === "aeo" ? (
+            <Link
+              to="/p/$projectId/brand-lookup"
+              params={{ projectId }}
+              className="btn btn-primary"
+              onClick={() =>
+                captureClientEvent("dashboard:next_move_click", { step })
+              }
+            >
+              {copy.cta}
+            </Link>
           ) : (
             <button type="button" className="btn btn-primary" onClick={onCta}>
               {copy.cta}
@@ -241,9 +259,16 @@ export function DashboardPage({ projectId }: { projectId: string }) {
     queryKey: ["dashboardOverview", projectId],
     queryFn: () => getDashboardOverview({ data: { projectId } }),
   });
+  // Read-only peek at cached AI Visibility — no paid call, so it loads
+  // unconditionally alongside the SEO overview.
+  const aiVisibilityQuery = useQuery({
+    queryKey: ["dashboardAiVisibility", projectId],
+    queryFn: () => getDashboardAiVisibility({ data: { projectId } }),
+  });
 
   const activation = activationQuery.data;
   const overview = overviewQuery.data;
+  const aiVisibility = aiVisibilityQuery.data;
 
   // Visit-triggered backlink snapshot: fire once per page view when the
   // overview reports a missing or stale snapshot for a project with a domain.
@@ -298,7 +323,13 @@ export function DashboardPage({ projectId }: { projectId: string }) {
   return (
     <div className="px-4 py-4 pb-24 md:px-6 md:py-6 md:pb-8">
       <div className="mx-auto flex max-w-5xl flex-col gap-5">
-        <h1 className="text-2xl font-semibold">Dashboard</h1>
+        <div>
+          <h1 className="text-2xl font-semibold">Dashboard</h1>
+          <p className="mt-1 text-sm text-base-content/60">
+            Your visibility across Google and AI answer engines — SEO and AEO in
+            one place.
+          </p>
+        </div>
 
         <OnboardingChecklist projectId={projectId} activation={activation} />
 
@@ -326,6 +357,16 @@ export function DashboardPage({ projectId }: { projectId: string }) {
               key: "gsc",
               hasData: gscConnected,
               node: <GscCard projectId={projectId} connected={gscConnected} />,
+            },
+            {
+              key: "ai-visibility",
+              hasData: aiVisibility?.status === "cached",
+              node: (
+                <AiVisibilityCard
+                  projectId={projectId}
+                  aiVisibility={aiVisibility ?? null}
+                />
+              ),
             },
             {
               key: "audit",

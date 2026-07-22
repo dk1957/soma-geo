@@ -91,8 +91,10 @@ function getProjectNavItems(projectId: string) {
   );
 }
 
-// Grouped by scope: "My Site" is the project's own domain (tracked data),
-// "Research" is point-at-anything lookup tools.
+// Grouped into product pillars so the dual value prop is legible at a glance:
+// "AI Visibility" (AEO — how answer engines see the brand) sits as a
+// first-class pillar next to "SEO Research" (point-at-anything Google tools)
+// and "My Site" (the project's own tracked domain data).
 export function getProjectNavGroups(projectId: string) {
   const all = getProjectNavItems(projectId);
   const byPath = (path: (typeof projectNavItems)[number]["to"]) =>
@@ -104,13 +106,18 @@ export function getProjectNavGroups(projectId: string) {
       items: [byPath("/p/$projectId")],
     },
     {
-      label: "Research",
+      label: "AI Visibility",
+      items: [
+        byPath("/p/$projectId/brand-lookup"),
+        byPath("/p/$projectId/prompt-explorer"),
+      ],
+    },
+    {
+      label: "SEO Research",
       items: [
         byPath("/p/$projectId/keywords"),
         byPath("/p/$projectId/domain"),
         byPath("/p/$projectId/backlinks"),
-        byPath("/p/$projectId/brand-lookup"),
-        byPath("/p/$projectId/prompt-explorer"),
       ],
     },
     {

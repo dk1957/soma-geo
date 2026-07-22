@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { Check } from "lucide-react";
+import { Check, Sparkles } from "lucide-react";
 import { SearchConsoleConnectionCard } from "@/client/features/gsc/SearchConsoleConnectionCard";
 import { AUDIT_ISSUE_TYPES } from "@/shared/audit-issues";
 
@@ -9,6 +9,11 @@ import {
   formatCtr,
   formatPosition,
 } from "@/client/features/search-performance/SearchPerformanceColumns";
+import {
+  formatCount as formatNullableCount,
+  formatPlatformLabel,
+  PLATFORM_DOT_CLASS,
+} from "@/client/features/ai-search/platformLabels";
 import { getSearchPerformanceReport } from "@/serverFunctions/searchPerformance";
 import {
   CardShell,
@@ -23,6 +28,7 @@ import type {
   DashboardAuditSummary,
   DashboardBacklinkSummary,
 } from "@/server/features/dashboard/services/DashboardService";
+import type { DashboardAiVisibility } from "@/types/schemas/dashboard";
 
 // Plain string-keyed view of the registry: issue types from the DB are not
 // statically guaranteed to be registry keys.
@@ -288,6 +294,113 @@ export function BacklinkPulseCard({
           }
         />
       </div>
+    </CardShell>
+  );
+}
+
+// The AI answer-engine (AEO) analog of the Search performance card: how often
+// the brand is surfaced/cited by ChatGPT and Google's AI Overview. Data is a
+// read-only peek at the last cached Brand Lookup, so the card never triggers a
+// paid call — an empty peek shows a CTA to run a full lookup.
+export function AiVisibilityCard({
+  projectId,
+  aiVisibility,
+}: {
+  projectId: string;
+  aiVisibility: DashboardAiVisibility | null;
+}) {
+  if (!aiVisibility || aiVisibility.status === "empty") {
+    return (
+      <CardShell title="AI visibility">
+        <EmptyCardBody
+          message="See how often ChatGPT and Google's AI Overview mention and cite your brand — then track your share of voice against competitors."
+          cta={
+            <Link
+              to="/p/$projectId/brand-lookup"
+              params={{ projectId }}
+              className="btn btn-primary btn-sm"
+            >
+              Check AI visibility
+            </Link>
+          }
+        />
+      </CardShell>
+    );
+  }
+
+  return (
+    <CardShell
+      title="AI visibility"
+      stamp={`AI answer engines${
+        aiVisibility.fetchedAt
+          ? ` · updated ${formatDay(aiVisibility.fetchedAt)}`
+          : ""
+      }`}
+      action={
+        <Link
+          to="/p/$projectId/brand-lookup"
+          params={{ projectId }}
+          className={moreDetailsClass}
+        >
+          More details
+        </Link>
+      }
+    >
+      <div className="grid grid-cols-2 gap-3">
+        <Stat
+          label="AI mentions"
+          value={formatNullableCount(aiVisibility.totalMentions)}
+        />
+        <Stat
+          label="AI search volume"
+          value={formatNullableCount(aiVisibility.totalAiSearchVolume)}
+        />
+      </div>
+
+      {aiVisibility.perPlatform.length > 0 ? (
+        <ul className="mt-4 space-y-2">
+          {aiVisibility.perPlatform.map((platform) => (
+            <li
+              key={platform.platform}
+              className="flex items-center justify-between gap-2 text-sm"
+            >
+              <span className="flex min-w-0 items-center gap-2">
+                <span
+                  className={`size-2 shrink-0 rounded-full ${
+                    PLATFORM_DOT_CLASS[platform.platform]
+                  }`}
+                />
+                <span className="truncate">
+                  {formatPlatformLabel(platform.platform)}
+                </span>
+              </span>
+              <span className="shrink-0 tabular-nums text-base-content/60">
+                {formatNullableCount(platform.mentions)} mentions
+              </span>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+
+      {aiVisibility.sampleQueries.length > 0 ? (
+        <div className="mt-4 border-t border-base-300 pt-3">
+          <p className="flex items-center gap-1.5 text-xs uppercase tracking-wide text-base-content/60">
+            <Sparkles className="size-3.5" />
+            Prompts you surface for
+          </p>
+          <ul className="mt-2 space-y-1">
+            {aiVisibility.sampleQueries.map((query) => (
+              <li
+                key={query}
+                className="truncate text-sm text-base-content/70"
+                title={query}
+              >
+                {query}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
     </CardShell>
   );
 }

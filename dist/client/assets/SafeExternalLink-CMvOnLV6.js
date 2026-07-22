@@ -1,0 +1,1 @@
+import{j as r,bB as a}from"./index-BktOYHqP.js";import{g as i}from"./url-BB-CI0Jg.js";function x({url:t,label:e,className:n}){const s=i(t);return s?r.jsxs("a",{className:n,href:s,target:"_blank",rel:"noreferrer",children:[e,r.jsx(a,{className:"size-3 shrink-0"})]}):r.jsx("span",{className:n,children:e})}export{x as S};

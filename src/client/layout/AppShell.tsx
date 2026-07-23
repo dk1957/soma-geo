@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link, useLocation } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { Menu } from "lucide-react";
+import { Menu, MessageCircle } from "lucide-react";
 import {
   MissingSeoSetupModal,
   MobileSidebarDrawer,
@@ -9,6 +9,7 @@ import {
 } from "@/client/layout/AppShellParts";
 import { GscReEngagementModal } from "@/client/features/gsc/GscReEngagementModal";
 import { ProjectSwitcher } from "@/client/features/projects/ProjectSwitcher";
+import { ChatFlyout } from "@/client/features/sam/ChatFlyout";
 import { Sidebar } from "@/client/components/Sidebar";
 import { BILLING_ROUTE } from "@/shared/billing";
 import { getSeoApiKeyStatus } from "@/serverFunctions/config";
@@ -28,6 +29,7 @@ export function AuthenticatedAppLayout({
 }) {
   const location = useLocation();
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const [chatOpen, setChatOpen] = React.useState(false);
   const setupModalRef = React.useRef<HTMLDivElement | null>(null);
   const [showMissingSeoApiKeyModal, setShowMissingSeoApiKeyModal] =
     React.useState(false);
@@ -125,6 +127,7 @@ export function AuthenticatedAppLayout({
         <MobileTopBar
           drawerOpen={drawerOpen}
           onOpenDrawer={() => setDrawerOpen(true)}
+          onOpenChat={() => setChatOpen(true)}
           projectId={sidebarProjectId}
         />
 
@@ -132,7 +135,11 @@ export function AuthenticatedAppLayout({
             thin strip of the sidebar background above it and a hairline border. */}
         <div className="flex min-h-0 flex-1 flex-col md:pt-2">
           <div className="flex min-h-0 flex-1 flex-col overflow-hidden bg-base-100 md:rounded-tl-lg md:border-l md:border-t md:border-base-300">
-            <DesktopTopBar projectId={sidebarProjectId} />
+            <DesktopTopBar
+              projectId={sidebarProjectId}
+              chatOpen={chatOpen}
+              onToggleChat={() => setChatOpen((v) => !v)}
+            />
 
             <SeoApiStatusBanners
               shouldShowSeoApiWarning={shouldShowSeoApiWarning}
@@ -145,6 +152,47 @@ export function AuthenticatedAppLayout({
           </div>
         </div>
       </div>
+
+      {/* Gemini-style push-to-left chat pane. On desktop it takes up layout
+          space (flex sibling) so the app content shrinks/pushes left instead of
+          being covered. On mobile it slides in as a full-width overlay. */}
+      <div
+        className={`shrink-0 overflow-hidden border-l border-base-300 bg-base-100 transition-[width] duration-300 ease-in-out md:pt-2 ${
+          chatOpen ? "hidden md:block md:w-[420px] lg:w-[460px]" : "md:w-0"
+        }`}
+      >
+        <div className="h-full w-[420px] lg:w-[460px]">
+          <ChatFlyout
+            projectId={sidebarProjectId}
+            open={chatOpen}
+            onClose={() => setChatOpen(false)}
+          />
+        </div>
+      </div>
+
+      {/* Mobile chat: full-screen overlay pane. */}
+      {chatOpen ? (
+        <div className="fixed inset-0 z-50 md:hidden">
+          <ChatFlyout
+            projectId={sidebarProjectId}
+            open={chatOpen}
+            onClose={() => setChatOpen(false)}
+          />
+        </div>
+      ) : null}
+
+      {/* Floating action button (bottom-right) to open the chat pane. Hidden
+          while the pane is open so it doesn't overlap the conversation. */}
+      {!chatOpen && sidebarProjectId ? (
+        <button
+          type="button"
+          aria-label="Open SAM chat"
+          onClick={() => setChatOpen(true)}
+          className="btn btn-primary btn-circle fixed bottom-5 right-5 z-40 size-12 shadow-lg"
+        >
+          <MessageCircle className="size-5" />
+        </button>
+      ) : null}
 
       <MobileSidebarDrawer
         open={drawerOpen}
@@ -167,13 +215,36 @@ export function AuthenticatedAppLayout({
 }
 
 // Desktop top navigation bar. The project switcher lives here (right-aligned),
-// leaving the left sidebar dedicated to the grouped feature navigation.
-function DesktopTopBar({ projectId }: { projectId: string | null }) {
+// leaving the left sidebar dedicated to the grouped feature navigation. The
+// chat toggle sits at the far right (Gemini-style), opening the push-left pane.
+function DesktopTopBar({
+  projectId,
+  chatOpen,
+  onToggleChat,
+}: {
+  projectId: string | null;
+  chatOpen: boolean;
+  onToggleChat: () => void;
+}) {
   return (
     <div className="hidden shrink-0 items-center justify-end gap-2 border-b border-base-300 bg-base-100 px-4 py-2 md:flex">
       <div className="w-64">
         <ProjectSwitcher activeProjectId={projectId} align="end" />
       </div>
+      {projectId ? (
+        <button
+          type="button"
+          aria-label="Toggle SAM chat"
+          aria-pressed={chatOpen}
+          onClick={onToggleChat}
+          className={`btn btn-sm gap-1.5 ${
+            chatOpen ? "btn-primary" : "btn-ghost"
+          }`}
+        >
+          <MessageCircle className="size-4" />
+          Chat
+        </button>
+      ) : null}
     </div>
   );
 }
@@ -181,10 +252,12 @@ function DesktopTopBar({ projectId }: { projectId: string | null }) {
 function MobileTopBar({
   drawerOpen,
   onOpenDrawer,
+  onOpenChat,
   projectId,
 }: {
   drawerOpen: boolean;
   onOpenDrawer: () => void;
+  onOpenChat: () => void;
   projectId: string | null;
 }) {
   return (
@@ -198,11 +271,23 @@ function MobileTopBar({
       >
         <Menu className="h-5 w-5" />
       </button>
-      <Link to="/" className="ml-1 font-semibold text-base-content">
-        OpenSEO
+      <Link to="/" className="ml-1 flex items-center">
+        <img src="/soma-logo.png" alt="Soma" className="h-6 w-auto rounded" />
       </Link>
-      <div className="ml-auto w-44 max-w-[55%]">
-        <ProjectSwitcher activeProjectId={projectId} align="end" />
+      <div className="ml-auto flex items-center gap-1">
+        <div className="w-40 max-w-[50vw]">
+          <ProjectSwitcher activeProjectId={projectId} align="end" />
+        </div>
+        {projectId ? (
+          <button
+            type="button"
+            aria-label="Open SAM chat"
+            className="btn btn-square btn-ghost btn-sm"
+            onClick={onOpenChat}
+          >
+            <MessageCircle className="h-5 w-5" />
+          </button>
+        ) : null}
       </div>
     </div>
   );
